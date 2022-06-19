@@ -86,7 +86,7 @@
   ![image](https://user-images.githubusercontent.com/101010673/174492774-c92db6d7-ff4f-42dc-98d7-b2521b19ac79.png)  
   - Mình sử dụng **one_gadget** nằm ở offset **0xe3b31**  
  
-## Full exploitation script  
+## Full exploit script  
 ```python
 from pwn import *
 
