@@ -166,7 +166,7 @@ r.interactive()
 
 ## Author's Note:   
   - Bài này mình viết PoC rất vội bởi vì challenge này là challenge thay đổi phút cuối, thế chỗ cho một challenge ROP khá basic khác. Tại vì mình muốn tăng chút độ khó cho contest. Và cũng vì vậy cái exploit script này quá lộn xộn...    
-  - Mình lấy cảm hứng rất nhiều từ Babystack nằm trên pwnable.tw, nhưng mà mình vẫn nhớ lần đầu làm bài đó do mạng nhà mình chậm nên chạy exploit script mất hơn 20 phút 😶.   
+  - Mình lấy cảm hứng rất nhiều từ Babystack nằm trên pwnable.tw, mình vẫn nhớ lần đầu làm bài đó do mạng nhà mình chậm nên chạy exploit script mất hơn 20 phút 😶.   
   - Với cả mình là sinh viên khoa học máy tính, nên đã thêm cái twist tìm kiếm nhị phân này vào, giúp cho việc exploit chạy nhanh hơn :3   
   - Có một điều nữa là lúc mình viết challenge, có yếu tố nào đó khiến cho stack layout nó rất khó kiểm soát 😧. Dẫn đến thỉnh thoảng cái bước leak libc kia có lần offset nó bị sai và cuối cùng không leak được libc address. Mong các bạn thông cảm, mình thiếu kinh nghiệm :(    
   ![image](https://user-images.githubusercontent.com/101010673/175379882-39e5d361-6423-4125-a379-67d1bb8781df.png)   
