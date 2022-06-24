@@ -83,8 +83,8 @@
 ## Control RIP  
   - Để kiểm soát được luồng thực thi của chương trình (Hijacking RIP), ta sẽ dùng trick phổ biến: ghi đè **__malloc_hook** thành **one_gadget**  
   - Như vậy mỗi khi chương trình gọi **malloc** -> gọi **malloc_hook** -> gọi **one_gadget**  
-  ![image](https://user-images.githubusercontent.com/101010673/174492774-c92db6d7-ff4f-42dc-98d7-b2521b19ac79.png)  
-  - Mình sử dụng **one_gadget** nằm ở offset **0xe3b31**  
+  ![image](https://user-images.githubusercontent.com/101010673/175662573-0fe3c977-35f6-4338-aa4b-b892f81c10bc.png)   
+  - Mình sử dụng **one_gadget** nằm ở offset **0xe3b01**  
  
 ## Full exploit script  
 ```python
